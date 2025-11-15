@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kana Hasegawa – Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+        }
+        
+        body { 
+            font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; 
+            background: #fff; 
+            color: #333; 
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+        
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 3rem 0;
+            margin-bottom: 3rem;
+        }
+        
+        .hero-content h1 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: #000;
+            margin-bottom: 0.5rem;
+        }
+        
+        .hero-content .subtitle {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 0.25rem;
+        }
+        
+        .cta-section {
+            margin-top: 2rem;
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .download-btn {
+            padding: 0.75rem 1.5rem;
+            background: #000;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+        
+        .download-btn:hover {
+            background: #333;
+            transform: translateY(-2px);
+        }
+        
+        .contact-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .contact-links a {
+            color: #666;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.2s ease;
+        }
+        
+        .contact-links a:hover {
+            color: #000;
+            transform: translateY(-1px);
+        }
+        
+        .contact-links svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+        
+        /* Divider */
+        .divider {
+            height: 1px;
+            background: #ddd;
+            margin: 3rem 0;
+        }
+        
+        /* Portfolio Section */
+        .portfolio-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .portfolio-header h2 {
+            font-size: 1.5rem;
+            font-weight: 300;
+            color: #000;
+        }
+        
+        .viewer { 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            gap: 1rem;
+        }
+        
+        canvas { 
+            width: 100%; 
+            height: auto; 
+            background: #fff; 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            transition: box-shadow 0.3s ease;
+        }
+        
+        canvas:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        .loading { 
+            text-align: center; 
+            padding: 3rem; 
+            color: #999;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 3rem 0 2rem;
+            color: #999;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .cta-section {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Hero Section -->
+        <div class="hero">
+            <div class="hero-content">
+                <h1><strong>Kana Hasegawa</strong></h1>
+                <p class="subtitle">Creative Pattern Cutter</p>
+				<p class="subtitle">Menswear and Womenswear</p>
+
+                <div class="cta-section">
+                    <a href="portfolio.pdf" class="download-btn" download>Download Portfolio</a>
+                    <div class="contact-links">
+                        <a href="mailto:hsgwkn00@gmail.com">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                            </svg>
+                            Email
+                        </a>
+                        <a href="https://linkedin.com/in/kanahasegawa" target="_blank">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                            </svg>
+                            LinkedIn
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="divider"></div>
+        
+        <!-- Portfolio Preview Section -->
+        <div class="portfolio-header">
+            <h2>Portfolio</h2>
+        </div>
+        
+        <div class="viewer">
+            <div class="loading">Loading portfolio...</div>
+        </div>
+        
+        <div class="footer">
+            <p>© 2025 Kana Hasegawa. All rights reserved.</p>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script>
+        const url = 'portfolio.pdf';
+        
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+        
+        const scale = 1.5;
+        const viewer = document.querySelector('.viewer');
+        const loading = document.querySelector('.loading');
+        
+        async function renderAllPages(pdf) {
+            const numPages = pdf.numPages;
+            
+            // Remove loading message
+            loading.style.display = 'none';
+            
+            // Render all pages
+            for (let pageNum = 1; pageNum <= numPages; pageNum++) {
+                const page = await pdf.getPage(pageNum);
+                const viewport = page.getViewport({ scale: scale });
+                
+                // Create canvas for this page
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+                canvas.height = viewport.height;
+                canvas.width = viewport.width;
+                
+                viewer.appendChild(canvas);
+                
+                // Render the page
+                const renderContext = {
+                    canvasContext: ctx,
+                    viewport: viewport
+                };
+                
+                await page.render(renderContext).promise;
+            }
+        }
+        
+        // Load and render PDF
+        pdfjsLib.getDocument(url).promise.then(pdf => {
+            renderAllPages(pdf);
+        }).catch(error => {
+            loading.textContent = 'Error loading PDF';
+            console.error(error);
+        });
+    </script>
+</body>
+</html>
