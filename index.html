@@ -155,8 +155,8 @@
             max-width: 1000px;
             background: #f5f5f5;
             box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            transition: box-shadow 0.3s ease, opacity 0.4s ease;
-            opacity: 0;
+            transition: box-shadow 0.3s ease;
+            opacity: 1;
             min-height: 300px;
             display: block;
         }
@@ -316,37 +316,20 @@
             pdfDoc = await pdfjsLib.getDocument(pdfUrl).promise;
             viewer.innerHTML = ''; // Clear loading message
 
-            // Create placeholder containers for each page
+            // Render all pages immediately
+            const renderPromises = [];
             for (let pageNum = 1; pageNum <= pdfDoc.numPages; pageNum++) {
                 const pageContainer = document.createElement('div');
                 pageContainer.className = 'pdf-page-container';
                 pageContainer.dataset.pageNum = pageNum;
                 viewer.appendChild(pageContainer);
+
+                // Render page immediately
+                renderPromises.push(renderPage(pageNum, pageContainer));
             }
 
-            // Intersection Observer for lazy loading PDF pages
-            const pageObserver = new IntersectionObserver((entries) => {
-                entries.forEach(async (entry) => {
-                    if (entry.isIntersecting) {
-                        const container = entry.target;
-                        const pageNum = parseInt(container.dataset.pageNum);
-
-                        if (!container.classList.contains('loaded')) {
-                            await renderPage(pageNum, container);
-                            container.classList.add('loaded');
-                            pageObserver.unobserve(container);
-                        }
-                    }
-                });
-            }, {
-                rootMargin: '300px 0px',
-                threshold: 0.01
-            });
-
-            // Observe all page containers
-            document.querySelectorAll('.pdf-page-container').forEach(container => {
-                pageObserver.observe(container);
-            });
+            // Wait for all pages to render
+            await Promise.all(renderPromises);
 
         } catch (error) {
             console.error('Error loading PDF:', error);
@@ -373,6 +356,8 @@
                     canvasContext: context,
                     viewport: viewport
                 }).promise;
+
+                container.classList.add('loaded');
 
             } catch (error) {
                 console.error(`Error rendering page ${pageNum}:`, error);
