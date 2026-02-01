@@ -104,14 +104,43 @@
         
         /* Portfolio Section */
         .portfolio-header {
-            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.75rem;
             margin-bottom: 2rem;
+            flex-wrap: wrap;
         }
-        
+
         .portfolio-header h2 {
             font-size: 1.5rem;
             font-weight: 300;
             color: #000;
+        }
+
+        .scroll-indicator {
+            display: flex;
+            align-items: center;
+            opacity: 0.6;
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-indicator svg {
+            width: 20px;
+            height: 20px;
+            fill: #999;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-4px);
+            }
+            60% {
+                transform: translateY(-2px);
+            }
         }
         
         .viewer {
@@ -121,22 +150,38 @@
             gap: 1rem;
         }
 
-        .viewer img {
+        .pdf-page-container {
             width: 100%;
-            height: auto;
+            max-width: 1000px;
             background: #f5f5f5;
             box-shadow: 0 1px 3px rgba(0,0,0,0.1);
             transition: box-shadow 0.3s ease, opacity 0.4s ease;
             opacity: 0;
             min-height: 300px;
+            display: block;
         }
 
-        .viewer img.loaded {
+        .pdf-page-container.loaded {
             opacity: 1;
         }
 
-        .viewer img:hover {
+        .pdf-page-container:hover {
             box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .pdf-page-container canvas {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .pdf-loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 300px;
+            color: #999;
+            font-size: 0.9rem;
         }
 
         /* Footer */
@@ -149,12 +194,53 @@
         
         /* Responsive */
         @media (max-width: 768px) {
-            .hero-content h1 {
-                font-size: 2rem;
+            .container {
+                padding: 1.5rem 1rem;
             }
-            
+
+            .hero {
+                padding: 2rem 0;
+                margin-bottom: 2rem;
+            }
+
+            .hero-content h1 {
+                font-size: 1.75rem;
+            }
+
+            .hero-content .subtitle {
+                font-size: 0.9rem;
+            }
+
             .cta-section {
                 flex-direction: column;
+                gap: 1rem;
+            }
+
+            .download-btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            .contact-links {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .portfolio-header {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .portfolio-header h2 {
+                font-size: 1.25rem;
+            }
+
+            .pdf-page-container {
+                min-height: 200px;
+            }
+
+            .divider {
+                margin: 2rem 0;
             }
         }
     </style>
@@ -169,7 +255,7 @@
 				<p class="subtitle">Menswear and Womenswear</p>
 
                 <div class="cta-section">
-                    <a href="KanaHasegawaPortfolio.pdf" class="download-btn" download>Download Portfolio</a>
+                    <a href="KanaHasegawaPortfolioCompressed.pdf" class="download-btn" download>Download Portfolio</a>
                     <div class="contact-links">
                         <a href="mailto:hsgwkn00@gmail.com">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -193,61 +279,106 @@
         <!-- Portfolio Preview Section -->
         <div class="portfolio-header">
             <h2>Portfolio</h2>
+            <div class="scroll-indicator">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+                </svg>
+            </div>
         </div>
-        
-        <div class="viewer">
-            <img data-src="Portfolio Images/PortfolioKanaHasegawa-1.jpeg" alt="Portfolio page 1" class="lazy">
-            <img data-src="Portfolio Images/PortfolioKanaHasegawa-2.jpeg" alt="Portfolio page 2" class="lazy">
-            <img data-src="Portfolio Images/PortfolioKanaHasegawa-3.jpeg" alt="Portfolio page 3" class="lazy">
-            <img data-src="Portfolio Images/PortfolioKanaHasegawa-4.jpeg" alt="Portfolio page 4" class="lazy">
-            <img data-src="Portfolio Images/PortfolioKanaHasegawa-5.jpeg" alt="Portfolio page 5" class="lazy">
-            <img data-src="Portfolio Images/PortfolioKanaHasegawa-6.jpeg" alt="Portfolio page 6" class="lazy">
-            <img data-src="Portfolio Images/PortfolioKanaHasegawa-7.jpeg" alt="Portfolio page 7" class="lazy">
-            <img data-src="Portfolio Images/PortfolioKanaHasegawa-8.jpeg" alt="Portfolio page 8" class="lazy">
-            <img data-src="Portfolio Images/PortfolioKanaHasegawa-9.jpeg" alt="Portfolio page 9" class="lazy">
-            <img data-src="Portfolio Images/PortfolioKanaHasegawa-10.jpeg" alt="Portfolio page 10" class="lazy">
-            <img data-src="Portfolio Images/PortfolioKanaHasegawa-11.jpeg" alt="Portfolio page 11" class="lazy">
-            <img data-src="Portfolio Images/PortfolioKanaHasegawa-12.jpeg" alt="Portfolio page 12" class="lazy">
-            <img data-src="Portfolio Images/PortfolioKanaHasegawa-13.jpeg" alt="Portfolio page 13" class="lazy">
-            <img data-src="Portfolio Images/PortfolioKanaHasegawa-14.jpeg" alt="Portfolio page 14" class="lazy">
-            <img data-src="Portfolio Images/PortfolioKanaHasegawa-15.jpeg" alt="Portfolio page 15" class="lazy">
-            <img data-src="Portfolio Images/PortfolioKanaHasegawa-16.jpeg" alt="Portfolio page 16" class="lazy">
+
+        <div class="viewer" id="pdf-viewer">
+            <div class="pdf-loading">Loading portfolio...</div>
         </div>
 
         <div class="footer">
-            <p>© 2025 Kana Hasegawa. All rights reserved.</p>
+            <p>© Kana Hasegawa. All rights reserved.</p>
         </div>
     </div>
 
-    <script>
-        // Intersection Observer for lazy loading images
-        document.addEventListener('DOMContentLoaded', function() {
-            const lazyImages = document.querySelectorAll('img.lazy');
+    <!-- PDF.js from CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.min.mjs" type="module"></script>
 
-            const imageObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
+    <script type="module">
+        import * as pdfjsLib from 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.min.mjs';
+
+        // PDF.js configuration
+        const pdfUrl = 'KanaHasegawaPortfolioCompressed.pdf';
+        const viewer = document.getElementById('pdf-viewer');
+
+        // Initialize PDF.js worker
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.worker.min.mjs';
+
+        let pdfDoc = null;
+        const scale = 2; // Higher scale = better quality
+
+        // Load PDF document
+        try {
+            pdfDoc = await pdfjsLib.getDocument(pdfUrl).promise;
+            viewer.innerHTML = ''; // Clear loading message
+
+            // Create placeholder containers for each page
+            for (let pageNum = 1; pageNum <= pdfDoc.numPages; pageNum++) {
+                const pageContainer = document.createElement('div');
+                pageContainer.className = 'pdf-page-container';
+                pageContainer.dataset.pageNum = pageNum;
+                viewer.appendChild(pageContainer);
+            }
+
+            // Intersection Observer for lazy loading PDF pages
+            const pageObserver = new IntersectionObserver((entries) => {
+                entries.forEach(async (entry) => {
                     if (entry.isIntersecting) {
-                        const img = entry.target;
-                        const src = img.getAttribute('data-src');
+                        const container = entry.target;
+                        const pageNum = parseInt(container.dataset.pageNum);
 
-                        if (src) {
-                            img.src = src;
-                            img.onload = () => {
-                                img.classList.add('loaded');
-                            };
-                            observer.unobserve(img);
+                        if (!container.classList.contains('loaded')) {
+                            await renderPage(pageNum, container);
+                            container.classList.add('loaded');
+                            pageObserver.unobserve(container);
                         }
                     }
                 });
             }, {
-                rootMargin: '200px 0px', // Start loading 200px before image enters viewport
+                rootMargin: '300px 0px',
                 threshold: 0.01
             });
 
-            lazyImages.forEach(img => {
-                imageObserver.observe(img);
+            // Observe all page containers
+            document.querySelectorAll('.pdf-page-container').forEach(container => {
+                pageObserver.observe(container);
             });
-        });
+
+        } catch (error) {
+            console.error('Error loading PDF:', error);
+            viewer.innerHTML = '<div class="pdf-loading">Error loading portfolio. Please try downloading the PDF.</div>';
+        }
+
+        // Render a single page
+        async function renderPage(pageNum, container) {
+            try {
+                const page = await pdfDoc.getPage(pageNum);
+                const viewport = page.getViewport({ scale });
+
+                const canvas = document.createElement('canvas');
+                const context = canvas.getContext('2d');
+
+                // Set canvas dimensions
+                canvas.height = viewport.height;
+                canvas.width = viewport.width;
+
+                container.appendChild(canvas);
+
+                // Render PDF page to canvas
+                await page.render({
+                    canvasContext: context,
+                    viewport: viewport
+                }).promise;
+
+            } catch (error) {
+                console.error(`Error rendering page ${pageNum}:`, error);
+                container.innerHTML = `<div class="pdf-loading">Error loading page ${pageNum}</div>`;
+            }
+        }
     </script>
 </body>
 </html>
