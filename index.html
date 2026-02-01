@@ -114,32 +114,44 @@
             color: #000;
         }
         
-        .viewer { 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
+        .viewer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             gap: 1rem;
         }
-        
-        canvas { 
-            width: 100%; 
-            height: auto; 
-            background: #fff; 
+
+        .viewer img {
+            width: 100%;
+            height: auto;
+            background: #fff;
             box-shadow: 0 1px 3px rgba(0,0,0,0.1);
             transition: box-shadow 0.3s ease;
+            opacity: 0;
+            animation: fadeIn 0.5s ease forwards;
         }
-        
-        canvas:hover {
+
+        .viewer img:hover {
             box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
-        
-        .loading { 
-            text-align: center; 
-            padding: 3rem; 
-            color: #999;
-            animation: fadeIn 0.5s ease;
-        }
-        
+
+        .viewer img:nth-child(1) { animation-delay: 0.1s; }
+        .viewer img:nth-child(2) { animation-delay: 0.15s; }
+        .viewer img:nth-child(3) { animation-delay: 0.2s; }
+        .viewer img:nth-child(4) { animation-delay: 0.25s; }
+        .viewer img:nth-child(5) { animation-delay: 0.3s; }
+        .viewer img:nth-child(6) { animation-delay: 0.35s; }
+        .viewer img:nth-child(7) { animation-delay: 0.4s; }
+        .viewer img:nth-child(8) { animation-delay: 0.45s; }
+        .viewer img:nth-child(9) { animation-delay: 0.5s; }
+        .viewer img:nth-child(10) { animation-delay: 0.55s; }
+        .viewer img:nth-child(11) { animation-delay: 0.6s; }
+        .viewer img:nth-child(12) { animation-delay: 0.65s; }
+        .viewer img:nth-child(13) { animation-delay: 0.7s; }
+        .viewer img:nth-child(14) { animation-delay: 0.75s; }
+        .viewer img:nth-child(15) { animation-delay: 0.8s; }
+        .viewer img:nth-child(16) { animation-delay: 0.85s; }
+
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -208,63 +220,27 @@
         </div>
         
         <div class="viewer">
-            <div class="loading">Loading portfolio...</div>
+            <img src="PortfolioKanaHasegawa-1.png" alt="Portfolio page 1" loading="lazy">
+            <img src="PortfolioKanaHasegawa-2.png" alt="Portfolio page 2" loading="lazy">
+            <img src="PortfolioKanaHasegawa-3.png" alt="Portfolio page 3" loading="lazy">
+            <img src="PortfolioKanaHasegawa-4.png" alt="Portfolio page 4" loading="lazy">
+            <img src="PortfolioKanaHasegawa-5.png" alt="Portfolio page 5" loading="lazy">
+            <img src="PortfolioKanaHasegawa-6.png" alt="Portfolio page 6" loading="lazy">
+            <img src="PortfolioKanaHasegawa-7.png" alt="Portfolio page 7" loading="lazy">
+            <img src="PortfolioKanaHasegawa-8.png" alt="Portfolio page 8" loading="lazy">
+            <img src="PortfolioKanaHasegawa-9.png" alt="Portfolio page 9" loading="lazy">
+            <img src="PortfolioKanaHasegawa-10.png" alt="Portfolio page 10" loading="lazy">
+            <img src="PortfolioKanaHasegawa-11.png" alt="Portfolio page 11" loading="lazy">
+            <img src="PortfolioKanaHasegawa-12.png" alt="Portfolio page 12" loading="lazy">
+            <img src="PortfolioKanaHasegawa-13.png" alt="Portfolio page 13" loading="lazy">
+            <img src="PortfolioKanaHasegawa-14.png" alt="Portfolio page 14" loading="lazy">
+            <img src="PortfolioKanaHasegawa-15.png" alt="Portfolio page 15" loading="lazy">
+            <img src="PortfolioKanaHasegawa-16.png" alt="Portfolio page 16" loading="lazy">
         </div>
         
         <div class="footer">
             <p>© 2025 Kana Hasegawa. All rights reserved.</p>
         </div>
     </div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-    <script>
-        // Initialize PDF.js
-        const pdfjsLib = window['pdfjs-dist/build/pdf'];
-
-        const url = 'KanaHasegawaPortfolioCompressed.pdf';
-
-        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-        
-        const scale = 1.5;
-        const viewer = document.querySelector('.viewer');
-        const loading = document.querySelector('.loading');
-        
-        async function renderAllPages(pdf) {
-            const numPages = pdf.numPages;
-            
-            // Remove loading message
-            loading.style.display = 'none';
-            
-            // Render all pages
-            for (let pageNum = 1; pageNum <= numPages; pageNum++) {
-                const page = await pdf.getPage(pageNum);
-                const viewport = page.getViewport({ scale: scale });
-                
-                // Create canvas for this page
-                const canvas = document.createElement('canvas');
-                const ctx = canvas.getContext('2d');
-                canvas.height = viewport.height;
-                canvas.width = viewport.width;
-                
-                viewer.appendChild(canvas);
-                
-                // Render the page
-                const renderContext = {
-                    canvasContext: ctx,
-                    viewport: viewport
-                };
-                
-                await page.render(renderContext).promise;
-            }
-        }
-        
-        // Load and render PDF
-        pdfjsLib.getDocument(url).promise.then(pdf => {
-            renderAllPages(pdf);
-        }).catch(error => {
-            loading.textContent = 'Error loading PDF';
-            console.error(error);
-        });
-    </script>
 </body>
 </html>
