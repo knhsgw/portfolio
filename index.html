@@ -104,53 +104,86 @@
         
         /* Portfolio Section */
         .portfolio-header {
-            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.75rem;
             margin-bottom: 2rem;
+            flex-wrap: wrap;
         }
-        
+
         .portfolio-header h2 {
             font-size: 1.5rem;
             font-weight: 300;
             color: #000;
         }
-        
-        .viewer { 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            gap: 1rem;
+
+        .scroll-indicator {
+            display: flex;
+            align-items: center;
+            opacity: 0.6;
+            animation: bounce 2s infinite;
         }
-        
-        canvas { 
-            width: 100%; 
-            height: auto; 
-            background: #fff; 
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            transition: box-shadow 0.3s ease;
+
+        .scroll-indicator svg {
+            width: 20px;
+            height: 20px;
+            fill: #999;
         }
-        
-        canvas:hover {
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        }
-        
-        .loading { 
-            text-align: center; 
-            padding: 3rem; 
-            color: #999;
-            animation: fadeIn 0.5s ease;
-        }
-        
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
                 transform: translateY(0);
             }
+            40% {
+                transform: translateY(-4px);
+            }
+            60% {
+                transform: translateY(-2px);
+            }
         }
         
+        .viewer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .pdf-page-container {
+            width: 100%;
+            max-width: 1000px;
+            background: #f5f5f5;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            transition: box-shadow 0.3s ease;
+            opacity: 1;
+            min-height: 300px;
+            display: block;
+        }
+
+        .pdf-page-container.loaded {
+            opacity: 1;
+        }
+
+        .pdf-page-container:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .pdf-page-container canvas {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .pdf-loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 300px;
+            color: #999;
+            font-size: 0.9rem;
+        }
+
         /* Footer */
         .footer {
             text-align: center;
@@ -161,12 +194,53 @@
         
         /* Responsive */
         @media (max-width: 768px) {
-            .hero-content h1 {
-                font-size: 2rem;
+            .container {
+                padding: 1.5rem 1rem;
             }
-            
+
+            .hero {
+                padding: 2rem 0;
+                margin-bottom: 2rem;
+            }
+
+            .hero-content h1 {
+                font-size: 1.75rem;
+            }
+
+            .hero-content .subtitle {
+                font-size: 0.9rem;
+            }
+
             .cta-section {
                 flex-direction: column;
+                gap: 1rem;
+            }
+
+            .download-btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            .contact-links {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .portfolio-header {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .portfolio-header h2 {
+                font-size: 1.25rem;
+            }
+
+            .pdf-page-container {
+                min-height: 200px;
+            }
+
+            .divider {
+                margin: 2rem 0;
             }
         }
     </style>
@@ -181,7 +255,7 @@
 				<p class="subtitle">Menswear and Womenswear</p>
 
                 <div class="cta-section">
-                    <a href="portfolio.pdf" class="download-btn" download>Download Portfolio</a>
+                    <a href="KanaHasegawaPortfolioCompressed.pdf" class="download-btn" download>Download Portfolio</a>
                     <div class="contact-links">
                         <a href="mailto:hsgwkn00@gmail.com">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -205,63 +279,91 @@
         <!-- Portfolio Preview Section -->
         <div class="portfolio-header">
             <h2>Portfolio</h2>
+            <div class="scroll-indicator">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+                </svg>
+            </div>
         </div>
-        
-        <div class="viewer">
-            <div class="loading">Loading portfolio...</div>
+
+        <div class="viewer" id="pdf-viewer">
+            <div class="pdf-loading">Loading portfolio...</div>
         </div>
-        
+
         <div class="footer">
-            <p>© 2025 Kana Hasegawa. All rights reserved.</p>
+            <p>© Kana Hasegawa. All rights reserved.</p>
         </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-    <script>
-        const url = 'portfolio.pdf';
-        
-        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-        
-        const scale = 1.5;
-        const viewer = document.querySelector('.viewer');
-        const loading = document.querySelector('.loading');
-        
-        async function renderAllPages(pdf) {
-            const numPages = pdf.numPages;
-            
-            // Remove loading message
-            loading.style.display = 'none';
-            
-            // Render all pages
-            for (let pageNum = 1; pageNum <= numPages; pageNum++) {
-                const page = await pdf.getPage(pageNum);
-                const viewport = page.getViewport({ scale: scale });
-                
-                // Create canvas for this page
+    <!-- PDF.js from CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.min.mjs" type="module"></script>
+
+    <script type="module">
+        import * as pdfjsLib from 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.min.mjs';
+
+        // PDF.js configuration
+        const pdfUrl = 'KanaHasegawaPortfolioCompressed.pdf';
+        const viewer = document.getElementById('pdf-viewer');
+
+        // Initialize PDF.js worker
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.worker.min.mjs';
+
+        let pdfDoc = null;
+        const scale = 2; // Higher scale = better quality
+
+        // Load PDF document
+        try {
+            pdfDoc = await pdfjsLib.getDocument(pdfUrl).promise;
+            viewer.innerHTML = ''; // Clear loading message
+
+            // Render all pages immediately
+            const renderPromises = [];
+            for (let pageNum = 1; pageNum <= pdfDoc.numPages; pageNum++) {
+                const pageContainer = document.createElement('div');
+                pageContainer.className = 'pdf-page-container';
+                pageContainer.dataset.pageNum = pageNum;
+                viewer.appendChild(pageContainer);
+
+                // Render page immediately
+                renderPromises.push(renderPage(pageNum, pageContainer));
+            }
+
+            // Wait for all pages to render
+            await Promise.all(renderPromises);
+
+        } catch (error) {
+            console.error('Error loading PDF:', error);
+            viewer.innerHTML = '<div class="pdf-loading">Error loading portfolio. Please try downloading the PDF.</div>';
+        }
+
+        // Render a single page
+        async function renderPage(pageNum, container) {
+            try {
+                const page = await pdfDoc.getPage(pageNum);
+                const viewport = page.getViewport({ scale });
+
                 const canvas = document.createElement('canvas');
-                const ctx = canvas.getContext('2d');
+                const context = canvas.getContext('2d');
+
+                // Set canvas dimensions
                 canvas.height = viewport.height;
                 canvas.width = viewport.width;
-                
-                viewer.appendChild(canvas);
-                
-                // Render the page
-                const renderContext = {
-                    canvasContext: ctx,
+
+                container.appendChild(canvas);
+
+                // Render PDF page to canvas
+                await page.render({
+                    canvasContext: context,
                     viewport: viewport
-                };
-                
-                await page.render(renderContext).promise;
+                }).promise;
+
+                container.classList.add('loaded');
+
+            } catch (error) {
+                console.error(`Error rendering page ${pageNum}:`, error);
+                container.innerHTML = `<div class="pdf-loading">Error loading page ${pageNum}</div>`;
             }
         }
-        
-        // Load and render PDF
-        pdfjsLib.getDocument(url).promise.then(pdf => {
-            renderAllPages(pdf);
-        }).catch(error => {
-            loading.textContent = 'Error loading PDF';
-            console.error(error);
-        });
     </script>
 </body>
 </html>
