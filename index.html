@@ -124,45 +124,21 @@
         .viewer img {
             width: 100%;
             height: auto;
-            background: #fff;
+            background: #f5f5f5;
             box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            transition: box-shadow 0.3s ease;
+            transition: box-shadow 0.3s ease, opacity 0.4s ease;
             opacity: 0;
-            animation: fadeIn 0.5s ease forwards;
+            min-height: 300px;
+        }
+
+        .viewer img.loaded {
+            opacity: 1;
         }
 
         .viewer img:hover {
             box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
 
-        .viewer img:nth-child(1) { animation-delay: 0.1s; }
-        .viewer img:nth-child(2) { animation-delay: 0.15s; }
-        .viewer img:nth-child(3) { animation-delay: 0.2s; }
-        .viewer img:nth-child(4) { animation-delay: 0.25s; }
-        .viewer img:nth-child(5) { animation-delay: 0.3s; }
-        .viewer img:nth-child(6) { animation-delay: 0.35s; }
-        .viewer img:nth-child(7) { animation-delay: 0.4s; }
-        .viewer img:nth-child(8) { animation-delay: 0.45s; }
-        .viewer img:nth-child(9) { animation-delay: 0.5s; }
-        .viewer img:nth-child(10) { animation-delay: 0.55s; }
-        .viewer img:nth-child(11) { animation-delay: 0.6s; }
-        .viewer img:nth-child(12) { animation-delay: 0.65s; }
-        .viewer img:nth-child(13) { animation-delay: 0.7s; }
-        .viewer img:nth-child(14) { animation-delay: 0.75s; }
-        .viewer img:nth-child(15) { animation-delay: 0.8s; }
-        .viewer img:nth-child(16) { animation-delay: 0.85s; }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
         /* Footer */
         .footer {
             text-align: center;
@@ -220,27 +196,58 @@
         </div>
         
         <div class="viewer">
-            <img src="Portfolio Images/PortfolioKanaHasegawa-1.jpeg" alt="Portfolio page 1" loading="lazy">
-            <img src="Portfolio Images/PortfolioKanaHasegawa-2.jpeg" alt="Portfolio page 2" loading="lazy">
-            <img src="Portfolio Images/PortfolioKanaHasegawa-3.jpeg" alt="Portfolio page 3" loading="lazy">
-            <img src="Portfolio Images/PortfolioKanaHasegawa-4.jpeg" alt="Portfolio page 4" loading="lazy">
-            <img src="Portfolio Images/PortfolioKanaHasegawa-5.jpeg" alt="Portfolio page 5" loading="lazy">
-            <img src="Portfolio Images/PortfolioKanaHasegawa-6.jpeg" alt="Portfolio page 6" loading="lazy">
-            <img src="Portfolio Images/PortfolioKanaHasegawa-7.jpeg" alt="Portfolio page 7" loading="lazy">
-            <img src="Portfolio Images/PortfolioKanaHasegawa-8.jpeg" alt="Portfolio page 8" loading="lazy">
-            <img src="Portfolio Images/PortfolioKanaHasegawa-9.jpeg" alt="Portfolio page 9" loading="lazy">
-            <img src="Portfolio Images/PortfolioKanaHasegawa-10.jpeg" alt="Portfolio page 10" loading="lazy">
-            <img src="Portfolio Images/PortfolioKanaHasegawa-11.jpeg" alt="Portfolio page 11" loading="lazy">
-            <img src="Portfolio Images/PortfolioKanaHasegawa-12.jpeg" alt="Portfolio page 12" loading="lazy">
-            <img src="Portfolio Images/PortfolioKanaHasegawa-13.jpeg" alt="Portfolio page 13" loading="lazy">
-            <img src="Portfolio Images/PortfolioKanaHasegawa-14.jpeg" alt="Portfolio page 14" loading="lazy">
-            <img src="Portfolio Images/PortfolioKanaHasegawa-15.jpeg" alt="Portfolio page 15" loading="lazy">
-            <img src="Portfolio Images/PortfolioKanaHasegawa-16.jpeg" alt="Portfolio page 16" loading="lazy">
+            <img data-src="Portfolio Images/PortfolioKanaHasegawa-1.jpeg" alt="Portfolio page 1" class="lazy">
+            <img data-src="Portfolio Images/PortfolioKanaHasegawa-2.jpeg" alt="Portfolio page 2" class="lazy">
+            <img data-src="Portfolio Images/PortfolioKanaHasegawa-3.jpeg" alt="Portfolio page 3" class="lazy">
+            <img data-src="Portfolio Images/PortfolioKanaHasegawa-4.jpeg" alt="Portfolio page 4" class="lazy">
+            <img data-src="Portfolio Images/PortfolioKanaHasegawa-5.jpeg" alt="Portfolio page 5" class="lazy">
+            <img data-src="Portfolio Images/PortfolioKanaHasegawa-6.jpeg" alt="Portfolio page 6" class="lazy">
+            <img data-src="Portfolio Images/PortfolioKanaHasegawa-7.jpeg" alt="Portfolio page 7" class="lazy">
+            <img data-src="Portfolio Images/PortfolioKanaHasegawa-8.jpeg" alt="Portfolio page 8" class="lazy">
+            <img data-src="Portfolio Images/PortfolioKanaHasegawa-9.jpeg" alt="Portfolio page 9" class="lazy">
+            <img data-src="Portfolio Images/PortfolioKanaHasegawa-10.jpeg" alt="Portfolio page 10" class="lazy">
+            <img data-src="Portfolio Images/PortfolioKanaHasegawa-11.jpeg" alt="Portfolio page 11" class="lazy">
+            <img data-src="Portfolio Images/PortfolioKanaHasegawa-12.jpeg" alt="Portfolio page 12" class="lazy">
+            <img data-src="Portfolio Images/PortfolioKanaHasegawa-13.jpeg" alt="Portfolio page 13" class="lazy">
+            <img data-src="Portfolio Images/PortfolioKanaHasegawa-14.jpeg" alt="Portfolio page 14" class="lazy">
+            <img data-src="Portfolio Images/PortfolioKanaHasegawa-15.jpeg" alt="Portfolio page 15" class="lazy">
+            <img data-src="Portfolio Images/PortfolioKanaHasegawa-16.jpeg" alt="Portfolio page 16" class="lazy">
         </div>
-        
+
         <div class="footer">
             <p>© 2025 Kana Hasegawa. All rights reserved.</p>
         </div>
     </div>
+
+    <script>
+        // Intersection Observer for lazy loading images
+        document.addEventListener('DOMContentLoaded', function() {
+            const lazyImages = document.querySelectorAll('img.lazy');
+
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        const src = img.getAttribute('data-src');
+
+                        if (src) {
+                            img.src = src;
+                            img.onload = () => {
+                                img.classList.add('loaded');
+                            };
+                            observer.unobserve(img);
+                        }
+                    }
+                });
+            }, {
+                rootMargin: '200px 0px', // Start loading 200px before image enters viewport
+                threshold: 0.01
+            });
+
+            lazyImages.forEach(img => {
+                imageObserver.observe(img);
+            });
+        });
+    </script>
 </body>
 </html>
