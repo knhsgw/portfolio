@@ -3,7 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kana Hasegawa – Portfolio</title>
+    <title>Kana Hasegawa – Creative Pattern Cutter | Menswear &amp; Womenswear Portfolio</title>
+    <meta name="description" content="Portfolio of Kana Hasegawa, creative pattern cutter specialising in menswear and womenswear, based in the United Kingdom.">
+    <meta name="author" content="Kana Hasegawa">
+    <link rel="canonical" href="https://knhsgw.github.io/portfolio/">
+
+    <!-- Link previews (LinkedIn, WhatsApp, Slack, iMessage) -->
+    <meta property="og:type" content="profile">
+    <meta property="og:title" content="Kana Hasegawa – Creative Pattern Cutter">
+    <meta property="og:description" content="Menswear and womenswear pattern cutting portfolio.">
+    <meta property="og:url" content="https://knhsgw.github.io/portfolio/">
+    <meta property="og:image" content="https://knhsgw.github.io/portfolio/preview.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Kana Hasegawa – Creative Pattern Cutter, menswear and womenswear.">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="icon" href="favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400&display=swap" rel="stylesheet">
@@ -36,7 +54,7 @@
         
         .hero-content h1 {
             font-size: 2.5rem;
-            font-weight: 300;
+            font-weight: 400;
             color: #000;
             margin-bottom: 0.5rem;
         }
@@ -150,38 +168,22 @@
             gap: 1rem;
         }
 
-        .pdf-page-container {
+        .page {
             width: 100%;
             max-width: 1000px;
             background: #f5f5f5;
             box-shadow: 0 1px 3px rgba(0,0,0,0.1);
             transition: box-shadow 0.3s ease;
-            opacity: 1;
-            min-height: 300px;
-            display: block;
         }
 
-        .pdf-page-container.loaded {
-            opacity: 1;
-        }
-
-        .pdf-page-container:hover {
+        .page:hover {
             box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
 
-        .pdf-page-container canvas {
+        .page img {
             width: 100%;
             height: auto;
             display: block;
-        }
-
-        .pdf-loading {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 300px;
-            color: #999;
-            font-size: 0.9rem;
         }
 
         /* Footer */
@@ -235,22 +237,44 @@
                 font-size: 1.25rem;
             }
 
-            .pdf-page-container {
-                min-height: 200px;
-            }
-
             .divider {
                 margin: 2rem 0;
             }
         }
     </style>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ProfilePage",
+        "url": "https://knhsgw.github.io/portfolio/",
+        "name": "Kana Hasegawa – Creative Pattern Cutter",
+        "mainEntity": {
+            "@type": "Person",
+            "name": "Kana Hasegawa",
+            "jobTitle": "Creative Pattern Cutter",
+            "description": "Creative pattern cutter specialising in menswear and womenswear.",
+            "url": "https://knhsgw.github.io/portfolio/",
+            "image": "https://knhsgw.github.io/portfolio/preview.jpg",
+            "email": "mailto:hsgwkn00@gmail.com",
+            "sameAs": ["https://linkedin.com/in/kanahasegawa"],
+            "knowsAbout": [
+                "Pattern cutting",
+                "Menswear",
+                "Womenswear",
+                "Draping",
+                "Garment construction"
+            ]
+        }
+    }
+    </script>
 </head>
 <body>
     <div class="container">
         <!-- Hero Section -->
-        <div class="hero">
+        <header class="hero">
             <div class="hero-content">
-                <h1><strong>Kana Hasegawa</strong></h1>
+                <h1>Kana Hasegawa</h1>
                 <p class="subtitle">Creative Pattern Cutter</p>
 				<p class="subtitle">Menswear and Womenswear</p>
 
@@ -263,7 +287,7 @@
                             </svg>
                             Email
                         </a>
-                        <a href="https://linkedin.com/in/kanahasegawa" target="_blank">
+                        <a href="https://linkedin.com/in/kanahasegawa" target="_blank" rel="noopener noreferrer">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                 <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
                             </svg>
@@ -272,11 +296,12 @@
                     </div>
                 </div>
             </div>
-        </div>
-        
+        </header>
+
         <div class="divider"></div>
-        
+
         <!-- Portfolio Preview Section -->
+        <main>
         <div class="portfolio-header">
             <h2>Portfolio</h2>
             <div class="scroll-indicator">
@@ -286,81 +311,237 @@
             </div>
         </div>
 
-        <div class="viewer" id="pdf-viewer">
-            <div class="pdf-loading">Loading portfolio...</div>
+        <div class="viewer">
+        <!-- GALLERY:START — generated by tools/update_gallery.py, do not hand-edit -->
+                <figure class="page">
+                    <img src="portfolio-images/01-kana-hasegawa-creative-pattern-cutter-1000.webp"
+                         srcset="portfolio-images/01-kana-hasegawa-creative-pattern-cutter-1000.webp 1000w, portfolio-images/01-kana-hasegawa-creative-pattern-cutter-2000.webp 2000w"
+                         sizes="(max-width: 1000px) 100vw, 1000px"
+                         width="2000" height="1415"
+                         alt="Kana Hasegawa portfolio title page, creative pattern cutter"
+                         loading="eager"
+                         fetchpriority="high">
+                </figure>
+                <figure class="page">
+                    <img src="portfolio-images/02-kiko-kostadinov-menswear-ss27-1000.webp"
+                         srcset="portfolio-images/02-kiko-kostadinov-menswear-ss27-1000.webp 1000w, portfolio-images/02-kiko-kostadinov-menswear-ss27-2000.webp 2000w"
+                         sizes="(max-width: 1000px) 100vw, 1000px"
+                         width="2000" height="1415"
+                         alt="Kiko Kostadinov - Menswear SS27, portfolio page 2 of 25"
+                         loading="lazy"
+                         decoding="async">
+                </figure>
+                <figure class="page">
+                    <img src="portfolio-images/03-kiko-kostadinov-menswear-ss27-1000.webp"
+                         srcset="portfolio-images/03-kiko-kostadinov-menswear-ss27-1000.webp 1000w, portfolio-images/03-kiko-kostadinov-menswear-ss27-2000.webp 2000w"
+                         sizes="(max-width: 1000px) 100vw, 1000px"
+                         width="2000" height="1415"
+                         alt="Kiko Kostadinov - Menswear SS27, portfolio page 3 of 25"
+                         loading="lazy"
+                         decoding="async">
+                </figure>
+                <figure class="page">
+                    <img src="portfolio-images/04-kiko-kostadinov-womenswear-aw26-1000.webp"
+                         srcset="portfolio-images/04-kiko-kostadinov-womenswear-aw26-1000.webp 1000w, portfolio-images/04-kiko-kostadinov-womenswear-aw26-2000.webp 2000w"
+                         sizes="(max-width: 1000px) 100vw, 1000px"
+                         width="2000" height="1415"
+                         alt="Kiko Kostadinov - Womenswear AW26, portfolio page 4 of 25"
+                         loading="lazy"
+                         decoding="async">
+                </figure>
+                <figure class="page">
+                    <img src="portfolio-images/05-kiko-kostadinov-menswear-aw26-1000.webp"
+                         srcset="portfolio-images/05-kiko-kostadinov-menswear-aw26-1000.webp 1000w, portfolio-images/05-kiko-kostadinov-menswear-aw26-2000.webp 2000w"
+                         sizes="(max-width: 1000px) 100vw, 1000px"
+                         width="2000" height="1415"
+                         alt="Kiko Kostadinov - Menswear AW26, portfolio page 5 of 25"
+                         loading="lazy"
+                         decoding="async">
+                </figure>
+                <figure class="page">
+                    <img src="portfolio-images/06-kiko-kostadinov-menswear-aw26-1000.webp"
+                         srcset="portfolio-images/06-kiko-kostadinov-menswear-aw26-1000.webp 1000w, portfolio-images/06-kiko-kostadinov-menswear-aw26-2000.webp 2000w"
+                         sizes="(max-width: 1000px) 100vw, 1000px"
+                         width="2000" height="1415"
+                         alt="Kiko Kostadinov - Menswear AW26, portfolio page 6 of 25"
+                         loading="lazy"
+                         decoding="async">
+                </figure>
+                <figure class="page">
+                    <img src="portfolio-images/07-kiko-kostadinov-womenswear-ss26-1000.webp"
+                         srcset="portfolio-images/07-kiko-kostadinov-womenswear-ss26-1000.webp 1000w, portfolio-images/07-kiko-kostadinov-womenswear-ss26-2000.webp 2000w"
+                         sizes="(max-width: 1000px) 100vw, 1000px"
+                         width="2000" height="1415"
+                         alt="Kiko Kostadinov - Womenswear SS26, portfolio page 7 of 25"
+                         loading="lazy"
+                         decoding="async">
+                </figure>
+                <figure class="page">
+                    <img src="portfolio-images/08-kiko-kostadinov-womenswear-ss26-1000.webp"
+                         srcset="portfolio-images/08-kiko-kostadinov-womenswear-ss26-1000.webp 1000w, portfolio-images/08-kiko-kostadinov-womenswear-ss26-2000.webp 2000w"
+                         sizes="(max-width: 1000px) 100vw, 1000px"
+                         width="2000" height="1415"
+                         alt="Kiko Kostadinov - Womenswear SS26, portfolio page 8 of 25"
+                         loading="lazy"
+                         decoding="async">
+                </figure>
+                <figure class="page">
+                    <img src="portfolio-images/09-kiko-kostadinov-menswear-ss26-1000.webp"
+                         srcset="portfolio-images/09-kiko-kostadinov-menswear-ss26-1000.webp 1000w, portfolio-images/09-kiko-kostadinov-menswear-ss26-2000.webp 2000w"
+                         sizes="(max-width: 1000px) 100vw, 1000px"
+                         width="2000" height="1415"
+                         alt="Kiko Kostadinov - Menswear SS26, portfolio page 9 of 25"
+                         loading="lazy"
+                         decoding="async">
+                </figure>
+                <figure class="page">
+                    <img src="portfolio-images/10-kiko-kostadinov-menswear-ss26-1000.webp"
+                         srcset="portfolio-images/10-kiko-kostadinov-menswear-ss26-1000.webp 1000w, portfolio-images/10-kiko-kostadinov-menswear-ss26-2000.webp 2000w"
+                         sizes="(max-width: 1000px) 100vw, 1000px"
+                         width="2000" height="1415"
+                         alt="Kiko Kostadinov - Menswear SS26, portfolio page 10 of 25"
+                         loading="lazy"
+                         decoding="async">
+                </figure>
+                <figure class="page">
+                    <img src="portfolio-images/11-kiko-kostadinov-dante-pre-collection-1000.webp"
+                         srcset="portfolio-images/11-kiko-kostadinov-dante-pre-collection-1000.webp 1000w, portfolio-images/11-kiko-kostadinov-dante-pre-collection-2000.webp 2000w"
+                         sizes="(max-width: 1000px) 100vw, 1000px"
+                         width="2000" height="1415"
+                         alt="Kiko Kostadinov - Dante Pre-Collection, portfolio page 11 of 25"
+                         loading="lazy"
+                         decoding="async">
+                </figure>
+                <figure class="page">
+                    <img src="portfolio-images/12-kiko-kostadinov-womenswear-aw25-1000.webp"
+                         srcset="portfolio-images/12-kiko-kostadinov-womenswear-aw25-1000.webp 1000w, portfolio-images/12-kiko-kostadinov-womenswear-aw25-2000.webp 2000w"
+                         sizes="(max-width: 1000px) 100vw, 1000px"
+                         width="2000" height="1415"
+                         alt="Kiko Kostadinov - Womenswear AW25, portfolio page 12 of 25"
+                         loading="lazy"
+                         decoding="async">
+                </figure>
+                <figure class="page">
+                    <img src="portfolio-images/13-kiko-kostadinov-menswear-aw25-1000.webp"
+                         srcset="portfolio-images/13-kiko-kostadinov-menswear-aw25-1000.webp 1000w, portfolio-images/13-kiko-kostadinov-menswear-aw25-2000.webp 2000w"
+                         sizes="(max-width: 1000px) 100vw, 1000px"
+                         width="2000" height="1415"
+                         alt="Kiko Kostadinov - Menswear AW25, portfolio page 13 of 25"
+                         loading="lazy"
+                         decoding="async">
+                </figure>
+                <figure class="page">
+                    <img src="portfolio-images/14-kiko-kostadinov-menswear-aw25-1000.webp"
+                         srcset="portfolio-images/14-kiko-kostadinov-menswear-aw25-1000.webp 1000w, portfolio-images/14-kiko-kostadinov-menswear-aw25-2000.webp 2000w"
+                         sizes="(max-width: 1000px) 100vw, 1000px"
+                         width="2000" height="1415"
+                         alt="Kiko Kostadinov - Menswear AW25, portfolio page 14 of 25"
+                         loading="lazy"
+                         decoding="async">
+                </figure>
+                <figure class="page">
+                    <img src="portfolio-images/15-kiko-kostadinov-womenswear-ss25-1000.webp"
+                         srcset="portfolio-images/15-kiko-kostadinov-womenswear-ss25-1000.webp 1000w, portfolio-images/15-kiko-kostadinov-womenswear-ss25-2000.webp 2000w"
+                         sizes="(max-width: 1000px) 100vw, 1000px"
+                         width="2000" height="1415"
+                         alt="Kiko Kostadinov - Womenswear SS25, portfolio page 15 of 25"
+                         loading="lazy"
+                         decoding="async">
+                </figure>
+                <figure class="page">
+                    <img src="portfolio-images/16-kiko-kostadinov-archive-1000.webp"
+                         srcset="portfolio-images/16-kiko-kostadinov-archive-1000.webp 1000w, portfolio-images/16-kiko-kostadinov-archive-2000.webp 2000w"
+                         sizes="(max-width: 1000px) 100vw, 1000px"
+                         width="2000" height="1415"
+                         alt="Kiko Kostadinov - Archive, portfolio page 16 of 25"
+                         loading="lazy"
+                         decoding="async">
+                </figure>
+                <figure class="page">
+                    <img src="portfolio-images/17-kiko-kostadinov-levis-1000.webp"
+                         srcset="portfolio-images/17-kiko-kostadinov-levis-1000.webp 1000w, portfolio-images/17-kiko-kostadinov-levis-2000.webp 2000w"
+                         sizes="(max-width: 1000px) 100vw, 1000px"
+                         width="2000" height="1415"
+                         alt="Kiko Kostadinov - Levi&#x27;s, portfolio page 17 of 25"
+                         loading="lazy"
+                         decoding="async">
+                </figure>
+                <figure class="page">
+                    <img src="portfolio-images/18-kiko-kostadinov-charli-xcx-custom-garments-1000.webp"
+                         srcset="portfolio-images/18-kiko-kostadinov-charli-xcx-custom-garments-1000.webp 1000w, portfolio-images/18-kiko-kostadinov-charli-xcx-custom-garments-2000.webp 2000w"
+                         sizes="(max-width: 1000px) 100vw, 1000px"
+                         width="2000" height="1415"
+                         alt="Kiko Kostadinov - Charli XCX - Custom Garments, portfolio page 18 of 25"
+                         loading="lazy"
+                         decoding="async">
+                </figure>
+                <figure class="page">
+                    <img src="portfolio-images/19-kiko-kostadinov-newjeans-custom-garments-1000.webp"
+                         srcset="portfolio-images/19-kiko-kostadinov-newjeans-custom-garments-1000.webp 1000w, portfolio-images/19-kiko-kostadinov-newjeans-custom-garments-2000.webp 2000w"
+                         sizes="(max-width: 1000px) 100vw, 1000px"
+                         width="2000" height="1415"
+                         alt="Kiko Kostadinov - NewJeans - Custom Garments, portfolio page 19 of 25"
+                         loading="lazy"
+                         decoding="async">
+                </figure>
+                <figure class="page">
+                    <img src="portfolio-images/20-m-i-d-limited-1000.webp"
+                         srcset="portfolio-images/20-m-i-d-limited-1000.webp 1000w, portfolio-images/20-m-i-d-limited-2000.webp 2000w"
+                         sizes="(max-width: 1000px) 100vw, 1000px"
+                         width="2000" height="1415"
+                         alt="m-i-d Limited, portfolio page 20 of 25"
+                         loading="lazy"
+                         decoding="async">
+                </figure>
+                <figure class="page">
+                    <img src="portfolio-images/21-m-i-d-limited-1000.webp"
+                         srcset="portfolio-images/21-m-i-d-limited-1000.webp 1000w, portfolio-images/21-m-i-d-limited-2000.webp 2000w"
+                         sizes="(max-width: 1000px) 100vw, 1000px"
+                         width="2000" height="1415"
+                         alt="m-i-d Limited, portfolio page 21 of 25"
+                         loading="lazy"
+                         decoding="async">
+                </figure>
+                <figure class="page">
+                    <img src="portfolio-images/22-m-i-d-limited-1000.webp"
+                         srcset="portfolio-images/22-m-i-d-limited-1000.webp 1000w, portfolio-images/22-m-i-d-limited-2000.webp 2000w"
+                         sizes="(max-width: 1000px) 100vw, 1000px"
+                         width="2000" height="1415"
+                         alt="m-i-d Limited, portfolio page 22 of 25"
+                         loading="lazy"
+                         decoding="async">
+                </figure>
+                <figure class="page">
+                    <img src="portfolio-images/23-m-i-d-limited-1000.webp"
+                         srcset="portfolio-images/23-m-i-d-limited-1000.webp 1000w, portfolio-images/23-m-i-d-limited-2000.webp 2000w"
+                         sizes="(max-width: 1000px) 100vw, 1000px"
+                         width="2000" height="1415"
+                         alt="m-i-d Limited, portfolio page 23 of 25"
+                         loading="lazy"
+                         decoding="async">
+                </figure>
+                <figure class="page">
+                    <img src="portfolio-images/24-m-i-d-limited-1000.webp"
+                         srcset="portfolio-images/24-m-i-d-limited-1000.webp 1000w, portfolio-images/24-m-i-d-limited-2000.webp 2000w"
+                         sizes="(max-width: 1000px) 100vw, 1000px"
+                         width="2000" height="1415"
+                         alt="m-i-d Limited, portfolio page 24 of 25"
+                         loading="lazy"
+                         decoding="async">
+                </figure>
+                <figure class="page">
+                    <img src="portfolio-images/25-m-i-d-limited-1000.webp"
+                         srcset="portfolio-images/25-m-i-d-limited-1000.webp 1000w, portfolio-images/25-m-i-d-limited-2000.webp 2000w"
+                         sizes="(max-width: 1000px) 100vw, 1000px"
+                         width="2000" height="1415"
+                         alt="m-i-d Limited, portfolio page 25 of 25"
+                         loading="lazy"
+                         decoding="async">
+                </figure>
+        <!-- GALLERY:END -->
         </div>
+        </main>
 
     </div>
-
-    <!-- PDF.js from CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.min.mjs" type="module"></script>
-
-    <script type="module">
-        import * as pdfjsLib from 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.min.mjs';
-
-        // PDF.js configuration
-        const pdfUrl = 'KanaHasegawaPortfolioCompressed.pdf';
-        const viewer = document.getElementById('pdf-viewer');
-
-        // Initialize PDF.js worker
-        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.worker.min.mjs';
-
-        let pdfDoc = null;
-        const scale = 2; // Higher scale = better quality
-
-        // Load PDF document
-        try {
-            pdfDoc = await pdfjsLib.getDocument(pdfUrl).promise;
-            viewer.innerHTML = ''; // Clear loading message
-
-            // Render all pages immediately
-            const renderPromises = [];
-            for (let pageNum = 1; pageNum <= pdfDoc.numPages; pageNum++) {
-                const pageContainer = document.createElement('div');
-                pageContainer.className = 'pdf-page-container';
-                pageContainer.dataset.pageNum = pageNum;
-                viewer.appendChild(pageContainer);
-
-                // Render page immediately
-                renderPromises.push(renderPage(pageNum, pageContainer));
-            }
-
-            // Wait for all pages to render
-            await Promise.all(renderPromises);
-
-        } catch (error) {
-            console.error('Error loading PDF:', error);
-            viewer.innerHTML = '<div class="pdf-loading">Error loading portfolio. Please try downloading the PDF.</div>';
-        }
-
-        // Render a single page
-        async function renderPage(pageNum, container) {
-            try {
-                const page = await pdfDoc.getPage(pageNum);
-                const viewport = page.getViewport({ scale });
-
-                const canvas = document.createElement('canvas');
-                const context = canvas.getContext('2d');
-
-                // Set canvas dimensions
-                canvas.height = viewport.height;
-                canvas.width = viewport.width;
-
-                container.appendChild(canvas);
-
-                // Render PDF page to canvas
-                await page.render({
-                    canvasContext: context,
-                    viewport: viewport
-                }).promise;
-
-                container.classList.add('loaded');
-
-            } catch (error) {
-                console.error(`Error rendering page ${pageNum}:`, error);
-                container.innerHTML = `<div class="pdf-loading">Error loading page ${pageNum}</div>`;
-            }
-        }
-    </script>
 </body>
 </html>

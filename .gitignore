@@ -1,0 +1,5 @@
+# Local virtualenv for tools/update_gallery.py
+tools/.venv/
+tools/venv/
+__pycache__/
+*.pyc
