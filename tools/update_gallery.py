@@ -104,7 +104,7 @@ def figure(p, total, first):
     return f'''                <figure class="page">
                     <img src="portfolio-images/{slug}-1000.webp"
                          srcset="portfolio-images/{slug}-1000.webp 1000w, portfolio-images/{slug}-2000.webp 2000w"
-                         sizes="(max-width: 1000px) 100vw, 1000px"
+                         sizes="(max-width: 2000px) 100vw, 2000px"
                          width="{p['width']}" height="{p['height']}"
                          alt="{html.escape(alt, quote=True)}"
                          {loading_attrs}>
