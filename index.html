@@ -550,7 +550,28 @@
         // in a viewer instead, so fetch it as a blob and save it from an object URL.
         (function () {
             var btn = document.querySelector('.download-btn');
-            if (!btn || !window.fetch || !window.matchMedia('(pointer: coarse)').matches) return;
+            if (!btn) return;
+
+            // In-app browsers (LinkedIn, Instagram, etc.) silently drop downloads, so open the PDF instead.
+            var ua = navigator.userAgent;
+            var inApp = /LinkedInApp|Instagram|FBAN|FBAV|FB_IAB|Twitter|Snapchat|musical_ly|BytedanceWebview|Pinterest|Line\//i.test(ua)
+                || /Android.*; wv\)/.test(ua)
+                || (/iPhone|iPad|iPod/.test(ua) && !/Safari\//.test(ua));
+            if (inApp) {
+                btn.removeAttribute('download');
+                if (/Android/.test(ua)) {
+                    // Android WebViews can't display PDFs, so hand the link to Chrome, falling back to the PDF URL.
+                    btn.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        window.location.href = 'intent://' + btn.href.replace(/^https?:\/\//, '')
+                            + '#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url='
+                            + encodeURIComponent(btn.href) + ';end';
+                    });
+                }
+                return;
+            }
+
+            if (!window.fetch || !window.matchMedia('(pointer: coarse)').matches) return;
 
             btn.addEventListener('click', function (e) {
                 e.preventDefault();
