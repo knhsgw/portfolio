@@ -280,7 +280,7 @@
                 <p class="subtitle">London, UK</p>
 
                 <div class="cta-section">
-                    <a href="KanaHasegawaPortfolio.pdf" class="download-btn" download>Download Portfolio</a>
+                    <a href="KanaHasegawaPortfolioCompressed.pdf" class="download-btn" download="KanaHasegawaPortfolio.pdf">Download Portfolio</a>
                     <div class="contact-links">
                         <a href="mailto:hsgwkn00@gmail.com">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -568,7 +568,7 @@
                         var url = URL.createObjectURL(new Blob([blob], { type: 'application/octet-stream' }));
                         var a = document.createElement('a');
                         a.href = url;
-                        a.download = btn.getAttribute('href');
+                        a.download = btn.getAttribute('download');
                         document.body.appendChild(a);
                         a.click();
                         a.remove();
