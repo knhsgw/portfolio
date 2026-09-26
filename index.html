@@ -544,6 +544,46 @@
         </main>
 
     </div>
+
+    <script>
+        // Mobile browsers often ignore the download attribute and open the PDF
+        // in a viewer instead, so fetch it as a blob and save it from an object URL.
+        (function () {
+            var btn = document.querySelector('.download-btn');
+            if (!btn || !window.fetch || !window.matchMedia('(pointer: coarse)').matches) return;
+
+            btn.addEventListener('click', function (e) {
+                e.preventDefault();
+                if (btn.dataset.busy) return;
+                btn.dataset.busy = '1';
+                var label = btn.textContent;
+                btn.textContent = 'Preparing…';
+
+                fetch(btn.href)
+                    .then(function (res) {
+                        if (!res.ok) throw new Error(res.status);
+                        return res.blob();
+                    })
+                    .then(function (blob) {
+                        var url = URL.createObjectURL(new Blob([blob], { type: 'application/octet-stream' }));
+                        var a = document.createElement('a');
+                        a.href = url;
+                        a.download = btn.getAttribute('href');
+                        document.body.appendChild(a);
+                        a.click();
+                        a.remove();
+                        setTimeout(function () { URL.revokeObjectURL(url); }, 10000);
+                    })
+                    .catch(function () {
+                        window.location.href = btn.href;
+                    })
+                    .then(function () {
+                        btn.textContent = label;
+                        delete btn.dataset.busy;
+                    });
+            });
+        })();
+    </script>
 </body>
 </html>
 
